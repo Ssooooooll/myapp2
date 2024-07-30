@@ -6,8 +6,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class Student {
     private String name;
-    @Autowired
+    //@Autowired
     private Address address;
+    //@Autowired
+    public Student(Address address){
+        this.address = address;
+    }
 
     public String getName() {
         return name;
@@ -18,6 +22,8 @@ public class Student {
     public Address getAddress() {
         return address;
     }
+    
+    @Autowired
     public void setAddress(Address address) {
         this.address = address;
     }
