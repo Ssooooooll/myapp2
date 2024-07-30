@@ -14,14 +14,14 @@ interface MessageService {
 class EmailService implements MessageService {
 	@Override
 	public void sendMsg(String message) {
-        System.out.println(message);
+        System.out.println(message + " , EmailService");
     }
 }
 @Component
 class SmsService implements MessageService {
 	@Override
 	public void sendMsg(String message) {
-        System.out.println(message);
+        System.out.println(message + ", SmsService");
     }
 }
 interface MessageProcesser {
@@ -31,7 +31,7 @@ interface MessageProcesser {
 class MessageProcesserImpl implements MessageProcesser {
     private MessageService messageService;
     @Autowired
-    public MessageProcesserImpl(@Qualifier("emailService") MessageService messageService) {
+    public MessageProcesserImpl(@Qualifier("smsService") MessageService messageService) {
         this.messageService = messageService;
     }
 	@Override
@@ -48,7 +48,8 @@ class JavaConfig {}
 public class Main {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
-
+        MessageProcesser messageProcesser = context.getBean(MessageProcesser.class);
+        messageProcesser.processMsg("안녕하세요.");
         
     }
 
