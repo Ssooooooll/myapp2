@@ -7,7 +7,7 @@ public class Main {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
 
         Student employee = context.getBean(Student.class);
-        employee.setName("강감찬");
+        employee.setName("kang");
     
         Address address = context.getBean(Address.class);
         address.setLocation("Seoul");
